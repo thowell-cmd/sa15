@@ -37,9 +37,69 @@
             <input type="radio" name="q2"value="E" id="q2E">
             <label for="q2E">E.) None of the above.</label><br>
 
+        <h2>South America</h2>
+            <h3>Question 3:</h3>
+            <p>Santiago is the capital of__.</p>
+            <input type="radio" name="q3"value="A" id="q3A">
+            <label for="q3A">A.) Chile.</label><br>
+            <input type="radio" name="q3"value="B" id="q3B">
+            <label for="q3B">B.) Brazil.</label><br>
+            <input type="radio" name="q3"value="C" id="q3C">
+            <label for="q3C">C.) Argentina.</label><br>
+            <input type="radio" name="q3"value="D" id="q3D">
+            <label for="q3D">D.) Peru.</label><br>
+            <input type="radio" name="q3"value="E" id="q3E">
+            <label for="q3E">E.) None of the above.</label><br>
+
+        <h2>Africa</h2>
+            <h3>Question 4:</h3>
+            <p>What is the capital of Kenya?</p>
+            <input type="radio" name="q4"value="A" id="q4A">
+            <label for="q4A">A.) Algiers.</label><br>
+            <input type="radio" name="q4"value="B" id="q4B">
+            <label for="q4B">B.) Gaboro.</label><br>
+            <input type="radio" name="q4"value="C" id="q4C">
+            <label for="q4C">C.) Porto-Novo.</label><br>
+            <input type="radio" name="q4"value="D" id="q4D">
+            <label for="q4D">D.) Djibouti.</label><br>
+            <input type="radio" name="q4"value="E" id="q4E">
+            <label for="q4E">E.) None of the above.</label><br>
+
             <button type="submit">Submit</button>
 
     </form>
+    <div id="qResult"></div>
+    <script>
+        const qForm = document.getElementById('qForm');
+        const qResult = document.getElementById('qResult');
 
+        qForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const score = calculateScore();
+
+            const resultMsg = `You scored ${score} out of 4`;
+
+            qResult.innerHTML = `<p>${resultMsg}</p>`;
+        });
+
+        function calculateScore() {
+            let score = 0;
+            const answers = {
+                q1: 'B',
+                q2: 'D',
+                q3: 'A',
+                q4: 'E'
+            };
+
+            for (const qId in answers) {
+                const answer = document.querySelector(`input[name="${qId}"]:checked`);
+                if (answer && answer.value === answers[qId]) {
+                    score++;
+                }
+            }
+            return score;
+        }
+    </script>
 </body>
 </html>
